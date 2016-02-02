@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: kyan
+title: 我是一名段子手
 subtitle:
 description:
 author: Kun Yan
@@ -67,6 +67,9 @@ theme: next
 since: 2016
 avatar: https://avatars2.githubusercontent.com/u/752130?v=3&s=460
 
+# Comment
+duoshuo_shortname: kyan
+
 # Social links
 social:
   github: https://github.com/kunyan
@@ -80,3 +83,6 @@ deploy:
   type: git
   repo: git@github.com:kunyan/kunyan.github.io
   branch: master
+
+google_analytics: UA-20154127-1
+google_site_verification: Vh4yCQQfJpCO3gxqyTnkpP-_qJXXSyG1o9s--q0htkM
