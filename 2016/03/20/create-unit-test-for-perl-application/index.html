@@ -1,0 +1,860 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="Vh4yCQQfJpCO3gxqyTnkpP-_qJXXSyG1o9s--q0htkM" />
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="我是一名段子手" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="Create Unit Test for Perl application1. Install Test::MoreFedora1sudo dnf install perl-Test-Simple
+RHEL1sudo yum install perl-Test-Simple
+Ubuntu1sudo apt-get install libtest-simple-perl
+2. Code RuleNa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Create Unit Test for Perl application">
+<meta property="og:url" content="http://yankun.org/2016/03/20/create-unit-test-for-perl-application/index.html">
+<meta property="og:site_name" content="我是一名段子手">
+<meta property="og:description" content="Create Unit Test for Perl application1. Install Test::MoreFedora1sudo dnf install perl-Test-Simple
+RHEL1sudo yum install perl-Test-Simple
+Ubuntu1sudo apt-get install libtest-simple-perl
+2. Code RuleNa">
+<meta property="og:updated_time" content="2016-03-20T14:58:59.933Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Create Unit Test for Perl application">
+<meta name="twitter:description" content="Create Unit Test for Perl application1. Install Test::MoreFedora1sudo dnf install perl-Test-Simple
+RHEL1sudo yum install perl-Test-Simple
+Ubuntu1sudo apt-get install libtest-simple-perl
+2. Code RuleNa">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Create Unit Test for Perl application | 我是一名段子手 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-20154127-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">我是一名段子手</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Create Unit Test for Perl application
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-20T22:57:13+08:00" content="2016-03-20">
+              2016-03-20
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/20/create-unit-test-for-perl-application/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/20/create-unit-test-for-perl-application/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Create-Unit-Test-for-Perl-application"><a href="#Create-Unit-Test-for-Perl-application" class="headerlink" title="Create Unit Test for Perl application"></a>Create Unit Test for Perl application</h2><h3 id="1-Install-Test-More"><a href="#1-Install-Test-More" class="headerlink" title="1. Install Test::More"></a>1. Install Test::More</h3><h6 id="Fedora"><a href="#Fedora" class="headerlink" title="Fedora"></a>Fedora</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf install perl-Test-Simple</span><br></pre></td></tr></table></figure>
+<h6 id="RHEL"><a href="#RHEL" class="headerlink" title="RHEL"></a>RHEL</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install perl-Test-Simple</span><br></pre></td></tr></table></figure>
+<h6 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libtest-simple-perl</span><br></pre></td></tr></table></figure>
+<h3 id="2-Code-Rule"><a href="#2-Code-Rule" class="headerlink" title="2. Code Rule"></a>2. Code Rule</h3><h5 id="Naming"><a href="#Naming" class="headerlink" title="Naming"></a>Naming</h5><p>The test file’s name start with “Test” and end in “.t”, it should saved in “t/“ directory.</p>
+<p>The recommend naming is “Test” + The Module be tested name + “.t”</p>
+<p>Example:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">TestVendorProduct</span><span class="selector-class">.t</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="Indentation"><a href="#Indentation" class="headerlink" title="Indentation"></a>Indentation</h5><p>4 spaces. no Tabs. Make sure your editor has been setup ready before coding.</p>
+<h3 id="3-Create-the-first-test-file"><a href="#3-Create-the-first-test-file" class="headerlink" title="3. Create the first test file"></a>3. Create the first test file</h3><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env perl</span></span><br><span class="line"><span class="keyword">use</span> strict;</span><br><span class="line"><span class="keyword">use</span> warnings;</span><br><span class="line"><span class="keyword">use</span> Test::More <span class="string">tests =&gt;</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">my</span> $got = <span class="string">'Hello World'</span>;</span><br><span class="line"><span class="keyword">my</span> $expected = <span class="string">'Hello World'</span>;</span><br><span class="line">is  ( $got, $expected, <span class="string">'Say Hello to World'</span> );</span><br><span class="line"></span><br><span class="line"><span class="keyword">my</span> $got2 = <span class="string">'Hello Moon'</span>;</span><br><span class="line"><span class="keyword">my</span> $expected2 = <span class="string">'Hello Mars'</span>;</span><br><span class="line">is  ( $got2, $expected2, <span class="string">'Say Hello to Mars'</span> );</span><br></pre></td></tr></table></figure>
+<p>Output:<br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span><span class="number">.2</span></span><br><span class="line">ok <span class="number">1</span> - Say Hello <span class="keyword">to</span> World</span><br><span class="line"><span class="literal">not</span> ok <span class="number">2</span> - Say Hello <span class="keyword">to</span> Mars</span><br><span class="line"><span class="meta">#   Failed test <span class="string">'Say Hello to Mars'</span></span></span><br><span class="line"><span class="meta">#   at /home/kyan/perl-unittest/t/TestUnitCase.t line 12.</span></span><br><span class="line"><span class="meta">#          got: <span class="string">'Hello Moon'</span></span></span><br><span class="line"><span class="meta">#     expected: <span class="string">'Hello Mars'</span></span></span><br><span class="line"><span class="meta"># Looks like you failed 1 test of 2.</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="Test-Plan"><a href="#Test-Plan" class="headerlink" title="Test Plan"></a>Test Plan</h5><p>When you create a test file for testing a module, you would know how many functions will be tested in this test file. there have 2 ways to define test numbers<br><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> Test::More <span class="string">tests =&gt;</span> <span class="number">2</span>; <span class="comment"># 2 is the number of tests</span></span><br></pre></td></tr></table></figure></p>
+<p>or</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> Test::More;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Testing code ....</span></span><br><span class="line"></span><br><span class="line">done_testing(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p>if you don’t know how many tests you’re going to run, you can just use</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">done_testing();</span><br></pre></td></tr></table></figure>
+<h5 id="Assertions"><a href="#Assertions" class="headerlink" title="Assertions"></a>Assertions</h5><ol>
+<li><p>ok</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ok($got eq $expected, $test_name);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>is</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">is  ( $got, $expected, $test_name );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>isnt</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">isnt( $got, $expected, $test_name );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>like</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">like( $got, <span class="regexp">qr/expected/</span>, $test_name );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>unlike</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unlike( $got, <span class="regexp">qr/expected/</span>, $test_name );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>cmp_ok</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmp_ok( $got, $op, $expected, $test_name );</span><br><span class="line"><span class="comment"># ok( $got eq $expected );</span></span><br><span class="line">cmp_ok( $got, <span class="string">'eq'</span>, $expected, <span class="string">'this eq that'</span> );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>can_ok</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">can_ok($module, @methods);</span><br><span class="line">can_ok($object, @methods);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>isa_ok</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">isa_ok($object,   $class, $object_name);</span><br><span class="line">isa_ok($subclass, $class, $object_name);</span><br><span class="line">isa_ok($ref,      $type,  $ref_name);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>new_ok</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">my</span> $obj = new_ok( $class );</span><br><span class="line"><span class="keyword">my</span> $obj = new_ok( $class =&gt; \@args );</span><br><span class="line"><span class="keyword">my</span> $obj = new_ok( $class =&gt; \@args, $object_name );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>subtest</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> Test::More <span class="string">tests =&gt;</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  subtest <span class="string">'An example subtest'</span> =&gt; <span class="function"><span class="keyword">sub</span> </span>&#123;</span><br><span class="line">      plan <span class="string">tests =&gt;</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">      pass(<span class="string">"This is a subtest"</span>);</span><br><span class="line">      pass(<span class="string">"So is this"</span>);</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>pass</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pass($test_name);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>fail</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fail($test_name);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>require_ok</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">require_ok($module);</span><br><span class="line">require_ok($file);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>use_ok</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BEGIN &#123; use_ok($module); &#125;</span><br><span class="line">BEGIN &#123; use_ok($module, @imports); &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>is_deeply</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">is_deeply( $got, $expected, $test_name );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>eq_array</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">my</span> $is_eq = eq_array(\@got, \@expected);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>eq_hash</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">my</span> $is_eq = eq_hash(\%got, \%expected);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>eq_set</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">my</span> $is_eq = eq_set(\@got, \@expected);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="Diagnostics"><a href="#Diagnostics" class="headerlink" title="Diagnostics"></a>Diagnostics</h5><ol>
+<li><p>diag</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diag(@diagnostic_message);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>note</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">note(@diagnostic_message);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>explain</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">my</span> @dump = explain @diagnostic_message;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="Blocks"><a href="#Blocks" class="headerlink" title="Blocks"></a>Blocks</h5><ol>
+<li><p>SKIP</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SKIP: &#123;</span><br><span class="line">    skip $why, $how_many <span class="keyword">if</span> $condition;</span><br><span class="line"></span><br><span class="line">    ...normal testing code goes here...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>TODO</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">TODO: &#123;</span><br><span class="line">    <span class="keyword">local</span> $TODO = $why <span class="keyword">if</span> $condition;</span><br><span class="line"></span><br><span class="line">    ...normal testing code goes here...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="4-Continuous-integration-with-Jenkins"><a href="#4-Continuous-integration-with-Jenkins" class="headerlink" title="4. Continuous integration with Jenkins"></a>4. Continuous integration with Jenkins</h3><h4 id="Perl-Application-Environment-Configuration"><a href="#Perl-Application-Environment-Configuration" class="headerlink" title="Perl Application Environment Configuration"></a>Perl Application Environment Configuration</h4><p>If you want to running test, your have to setup your application configuration.<br>Sometimes you have a config file, it is different in each env(Dev/Staging/Prod), What should we do now ?</p>
+<p>Here has a plugin could help you.</p>
+<ul>
+<li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Config+File+Provider+Plugin" target="_blank" rel="external">Config File Provider Plugin</a></li>
+</ul>
+<p>After installed it, Goto System config -&gt; Managed files, Add a new Config.<br>Then go to your job, “Provide Configuration files”, put the file in “Target” which you want to place it.</p>
+<h4 id="Generate-Tests-Report"><a href="#Generate-Tests-Report" class="headerlink" title="Generate Tests Report"></a>Generate Tests Report</h4><h5 id="1-Install-TAP-Harness-Archive"><a href="#1-Install-TAP-Harness-Archive" class="headerlink" title="1. Install TAP::Harness::Archive"></a>1. Install TAP::Harness::Archive</h5><h6 id="Fedora-1"><a href="#Fedora-1" class="headerlink" title="Fedora"></a>Fedora</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf install perl-TAP-Harness-Archive</span><br></pre></td></tr></table></figure>
+<h6 id="RHEL-1"><a href="#RHEL-1" class="headerlink" title="RHEL"></a>RHEL</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install perl-TAP-Harness-Archive</span><br></pre></td></tr></table></figure>
+<h6 id="Ubuntu-1"><a href="#Ubuntu-1" class="headerlink" title="Ubuntu"></a>Ubuntu</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libtap-harness-archive-perl</span><br></pre></td></tr></table></figure>
+<h5 id="2-Run-prove-to-generate-test-reports"><a href="#2-Run-prove-to-generate-test-reports" class="headerlink" title="2. Run prove to generate test reports"></a>2. Run prove to generate test reports</h5><p>create a directory for outputs and execute prove command to generate test reports</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p output</span><br><span class="line"></span><br><span class="line">prove -r t/ --archive output</span><br></pre></td></tr></table></figure>
+<p>You will found test results from output directory.</p>
+<h5 id="3-Publish-test-reports-on-Jenkins"><a href="#3-Publish-test-reports-on-Jenkins" class="headerlink" title="3. Publish test reports on Jenkins"></a>3. Publish test reports on Jenkins</h5><p>Install <a href="https://wiki.jenkins-ci.org/display/JENKINS/TAP+Plugin" target="_blank" rel="external">TAP Plugin</a></p>
+<p>Configure your job, Add a task after build, “Publish TAP Results”,<br>Input the test file pattern like :<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">output/<span class="keyword">*</span><span class="keyword">*</span>/<span class="keyword">*</span>.t</span><br></pre></td></tr></table></figure></p>
+<h4 id="Generate-Code-Coverage"><a href="#Generate-Code-Coverage" class="headerlink" title="Generate Code Coverage"></a>Generate Code Coverage</h4><h5 id="1-Install-Cover-Devel"><a href="#1-Install-Cover-Devel" class="headerlink" title="1. Install Cover::Devel"></a>1. Install Cover::Devel</h5><h6 id="Fedora-2"><a href="#Fedora-2" class="headerlink" title="Fedora"></a>Fedora</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dnf install perl-Cover-Devel</span><br></pre></td></tr></table></figure>
+<h6 id="RHEL-2"><a href="#RHEL-2" class="headerlink" title="RHEL"></a>RHEL</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install perl-Cover-Devel</span><br></pre></td></tr></table></figure>
+<h6 id="Ubuntu-2"><a href="#Ubuntu-2" class="headerlink" title="Ubuntu"></a>Ubuntu</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libdevel-cover-perl</span><br></pre></td></tr></table></figure>
+<h5 id="2-Install-Devel-Cover-Report-Clover"><a href="#2-Install-Devel-Cover-Report-Clover" class="headerlink" title="2. Install Devel::Cover::Report::Clover"></a>2. Install Devel::Cover::Report::Clover</h5><p>I didn’t found any exists package, please use CPAN install it</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cpan install Devel::Cover::Report::Clover</span><br></pre></td></tr></table></figure>
+<h5 id="3-Run-cover-to-generate-code-coverage-reports"><a href="#3-Run-cover-to-generate-code-coverage-reports" class="headerlink" title="3. Run cover to generate code coverage reports"></a>3. Run cover to generate code coverage reports</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cover --report clover</span><br></pre></td></tr></table></figure>
+<h5 id="4-Publish-Code-coverage-reports-on-Jenkins"><a href="#4-Publish-Code-coverage-reports-on-Jenkins" class="headerlink" title="4. Publish Code coverage reports on Jenkins"></a>4. Publish Code coverage reports on Jenkins</h5><ul>
+<li>Install <a href="https://wiki.jenkins-ci.org/display/JENKINS/Clover+Plugin" target="_blank" rel="external">Clover Plugin</a></li>
+<li>Install <a href="https://wiki.jenkins-ci.org/display/JENKINS/HTML+Publisher+Plugin" target="_blank" rel="external">HTML Publisher Plugin</a></li>
+</ul>
+<p>Configure your job, Add a task after build, “Publish Clover Coverage Report”,</p>
+<ul>
+<li>Clover report directory : cover_db</li>
+<li>Clover report file name : clover.xml</li>
+</ul>
+<p>Add a task after build, “Publish HTML reports”,</p>
+<ul>
+<li>HTML directory to archive : cover_db</li>
+<li>Index page[s] : coverage.html</li>
+<li>Report title : Coverage Reports</li>
+</ul>
+<p>The job Execute shell should be:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">prove -r t/ --archive output</span><br><span class="line">cover --report clover</span><br></pre></td></tr></table></figure>
+<h3 id="Known-Bugs"><a href="#Known-Bugs" class="headerlink" title="Known Bugs:"></a>Known Bugs:</h3><p>Clover Plugin has a bug, the “Coverage Report” link is 404, So I use HTML Publisher Plugin to instead of it.</p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ol>
+<li><a href="http://search.cpan.org/~exodist/Test-Simple-1.001014/lib/Test/More.pm" target="_blank" rel="external">Test More</a></li>
+</ol>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/20/create-unit-test-for-perl-application/"
+           data-title="Create Unit Test for Perl application" data-url="http://yankun.org/2016/03/20/create-unit-test-for-perl-application/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars2.githubusercontent.com/u/752130?v=3&s=460"
+               alt="Kun Yan" />
+          <p class="site-author-name" itemprop="name">Kun Yan</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/kunyan" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/ikays" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> twitter
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/kyan" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/yankun" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> zhihu
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-Unit-Test-for-Perl-application"><span class="nav-number">1.</span> <span class="nav-text">Create Unit Test for Perl application</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Install-Test-More"><span class="nav-number">1.1.</span> <span class="nav-text">1. Install Test::More</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Fedora"><span class="nav-number">1.1.0.0.1.</span> <span class="nav-text">Fedora</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#RHEL"><span class="nav-number">1.1.0.0.2.</span> <span class="nav-text">RHEL</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Ubuntu"><span class="nav-number">1.1.0.0.3.</span> <span class="nav-text">Ubuntu</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Code-Rule"><span class="nav-number">1.2.</span> <span class="nav-text">2. Code Rule</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Naming"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">Naming</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Indentation"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">Indentation</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Create-the-first-test-file"><span class="nav-number">1.3.</span> <span class="nav-text">3. Create the first test file</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Test-Plan"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">Test Plan</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Assertions"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">Assertions</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Diagnostics"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">Diagnostics</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Blocks"><span class="nav-number">1.3.0.4.</span> <span class="nav-text">Blocks</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Continuous-integration-with-Jenkins"><span class="nav-number">1.4.</span> <span class="nav-text">4. Continuous integration with Jenkins</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Perl-Application-Environment-Configuration"><span class="nav-number">1.4.1.</span> <span class="nav-text">Perl Application Environment Configuration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Generate-Tests-Report"><span class="nav-number">1.4.2.</span> <span class="nav-text">Generate Tests Report</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Install-TAP-Harness-Archive"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">1. Install TAP::Harness::Archive</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Fedora-1"><span class="nav-number">1.4.2.1.1.</span> <span class="nav-text">Fedora</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#RHEL-1"><span class="nav-number">1.4.2.1.2.</span> <span class="nav-text">RHEL</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Ubuntu-1"><span class="nav-number">1.4.2.1.3.</span> <span class="nav-text">Ubuntu</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-Run-prove-to-generate-test-reports"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">2. Run prove to generate test reports</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-Publish-test-reports-on-Jenkins"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">3. Publish test reports on Jenkins</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Generate-Code-Coverage"><span class="nav-number">1.4.3.</span> <span class="nav-text">Generate Code Coverage</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Install-Cover-Devel"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">1. Install Cover::Devel</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Fedora-2"><span class="nav-number">1.4.3.1.1.</span> <span class="nav-text">Fedora</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#RHEL-2"><span class="nav-number">1.4.3.1.2.</span> <span class="nav-text">RHEL</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Ubuntu-2"><span class="nav-number">1.4.3.1.3.</span> <span class="nav-text">Ubuntu</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-Install-Devel-Cover-Report-Clover"><span class="nav-number">1.4.3.2.</span> <span class="nav-text">2. Install Devel::Cover::Report::Clover</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-Run-cover-to-generate-code-coverage-reports"><span class="nav-number">1.4.3.3.</span> <span class="nav-text">3. Run cover to generate code coverage reports</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-Publish-Code-coverage-reports-on-Jenkins"><span class="nav-number">1.4.3.4.</span> <span class="nav-text">4. Publish Code coverage reports on Jenkins</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Known-Bugs"><span class="nav-number">1.5.</span> <span class="nav-text">Known Bugs:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-number">1.6.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kun Yan</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"kyan"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+
+</body>
+</html>
